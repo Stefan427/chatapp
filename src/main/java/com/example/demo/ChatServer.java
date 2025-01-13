@@ -3,7 +3,9 @@ package com.example.demo;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ChatServer implements Runnable{
@@ -68,23 +70,37 @@ public class ChatServer implements Runnable{
             }
         }
         public void messageSpeichern(String message, String username){
-            try (RandomAccessFile chatlog = new RandomAccessFile("Chatlog.txt","rw")){
-                String line;
-                boolean found = false;
-                while ((line = chatlog.readLine()) != null){
+            List<String> lines = new ArrayList<>();
+            boolean found = false;
 
-                    if (line.startsWith(String.valueOf(socket.getLocalPort()))) {
-                        chatlog.seek(chatlog.getFilePointer() - line.length());
-                        chatlog.writeBytes(line + username + ": " + message + "|");
+            // Datei lesen und in den Speicher laden
+            try (BufferedReader reader = new BufferedReader(new FileReader("Chatlog.txt"))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    if (line.startsWith(socket.getLocalPort() + "|")) {
+                        // Zeile aktualisieren
+                        line += username + ": " + message + "|";
                         found = true;
                     }
+                    lines.add(line);
                 }
-                if (!found){
-                    chatlog.seek(chatlog.length());
-                    chatlog.writeBytes("\n" + socket.getLocalPort() + "|" + username + ": " + message + "|");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            // Neue Zeile hinzufügen, falls nicht gefunden
+            if (!found) {
+                lines.add(socket.getLocalPort() + "|" + username + ": " + message + "|");
+            }
+
+            // Datei mit aktualisiertem Inhalt überschreiben
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("Chatlog.txt"))) {
+                for (String line : lines) {
+                    writer.write(line);
+                    writer.newLine();
                 }
-            }catch(Exception e){
-                System.out.println(e);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
