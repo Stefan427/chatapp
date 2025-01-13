@@ -12,6 +12,10 @@ public class ChatServer {
 
 
     public static void main(String[] args) {
+       new Thread(ChatServer::startServer).start();
+    }
+
+    public static void startServer() {
         System.out.println("Chat Server started...");
         try (ServerSocket serverSocket = new ServerSocket(PORT)) {
             while (true) {
@@ -21,7 +25,6 @@ public class ChatServer {
             e.printStackTrace();
         }
     }
-
     private static class ClientHandler extends Thread {
         private Socket socket;
         private PrintWriter out;
