@@ -6,18 +6,17 @@ import java.net.Socket;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ChatServer {
-    private static final int PORT = 12345; // You can set this to any port you prefer
+public class ChatServer implements Runnable{
+    int port;
     private static Set<PrintWriter> clientWriters = new HashSet<>();
 
-
-    public static void main(String[] args) {
-       new Thread(ChatServer::startServer).start();
+    public ChatServer(int port){
+        this.port = port;
     }
-
-    public static void startServer() {
+    @Override
+    public  void run() {
         System.out.println("Chat Server started...");
-        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
+        try (ServerSocket serverSocket = new ServerSocket(port)) {
             while (true) {
                 new ClientHandler(serverSocket.accept()).start();
             }
@@ -46,11 +45,7 @@ public class ChatServer {
                 String message;
 
                 while ((message = in.readLine()) != null) {
-                    try (FileWriter writer = new FileWriter("Chatlog.txt",true)) {
-                        writer.write(username + ": " + message + "\n");
-                    }catch (Exception e){
-                        System.out.println(e);
-                    }
+                   messageSpeichern(message,username);
                     synchronized (clientWriters) {
                         for (PrintWriter writer : clientWriters) {
                             if (writer != out) { // Do not send back to the sender
@@ -70,6 +65,26 @@ public class ChatServer {
                 synchronized (clientWriters) {
                     clientWriters.remove(out);
                 }
+            }
+        }
+        public void messageSpeichern(String message, String username){
+            try (RandomAccessFile chatlog = new RandomAccessFile("Chatlog.txt","rw")){
+                String line;
+                boolean found = false;
+                while ((line = chatlog.readLine()) != null){
+
+                    if (line.startsWith(String.valueOf(socket.getLocalPort()))) {
+                        chatlog.seek(chatlog.getFilePointer() - line.length());
+                        chatlog.writeBytes(line + username + ": " + message + "|");
+                        found = true;
+                    }
+                }
+                if (!found){
+                    chatlog.seek(chatlog.length());
+                    chatlog.writeBytes("\n" + socket.getLocalPort() + "|" + username + ": " + message + "|");
+                }
+            }catch(Exception e){
+                System.out.println(e);
             }
         }
     }

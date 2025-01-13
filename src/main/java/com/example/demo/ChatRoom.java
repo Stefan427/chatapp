@@ -40,11 +40,20 @@ public class ChatRoom {
         try {
             List<String> lines = Files.readAllLines(Paths.get("Chatlog.txt"));
             for (String line : lines) {
-                String[] parts = line.split(": ", 2);
-                if (username.equals(parts[0])){
-                    addMessageToHistory("me: " + parts[1]);
-                }else{
-                    addMessageToHistory(line);
+                boolean first = false;
+                if (line.startsWith(String.valueOf(socket.getPort()))){
+                    String[] parts = line.split("\\|");
+                    for (String s : parts){
+                        if (first){
+                            String[] parts2 = s.split(":");
+                            if (username.equals(parts2[0])){
+                                addMessageToHistory("me: " + parts2[1]);
+                            }else{
+                                addMessageToHistory(s);
+                            }
+                        }
+                        first = true;
+                    }
                 }
             }
         }catch (Exception e){
@@ -121,7 +130,7 @@ public class ChatRoom {
         // This method is called when the home icon is clicked
         try {
             // Load the first scene (hello-view.fxml)
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/hello-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
             Scene firstScene = new Scene(fxmlLoader.load(), 620, 440);
 
             // Get the current stage (window) and set the first scene

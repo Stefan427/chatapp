@@ -1,5 +1,1 @@
-Stefan: hallo 
-Nichtstefan: ich bin tim 
-
-Stefan: jo
-Nichtstefan: wa geht 
+12345|Stefan: diddi ist dumm|default184.52122892960554: hello|default0: ok|852.9341532737808: hello|default18: heftig |default76: mega|: lol|
