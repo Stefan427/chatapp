@@ -1,12 +1,15 @@
-package com.example.chatapptest;
+package com.example.demo;
 
 import java.io.*;
-import java.net.*;
-import java.util.*;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ChatServer {
     private static final int PORT = 12345; // You can set this to any port you prefer
     private static Set<PrintWriter> clientWriters = new HashSet<>();
+
 
     public static void main(String[] args) {
         System.out.println("Chat Server started...");
@@ -32,19 +35,23 @@ public class ChatServer {
             try {
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 out = new PrintWriter(socket.getOutputStream(), true);
-
+                String username = in.readLine();
                 synchronized (clientWriters) {
                     clientWriters.add(out);
                 }
 
-                String clientName = "Client" + socket.getPort(); // Unique identifier for each client
                 String message;
 
                 while ((message = in.readLine()) != null) {
+                    try (FileWriter writer = new FileWriter("Chatlog.txt",true)) {
+                        writer.write(username + ": " + message + "\n");
+                    }catch (Exception e){
+                        System.out.println(e);
+                    }
                     synchronized (clientWriters) {
                         for (PrintWriter writer : clientWriters) {
                             if (writer != out) { // Do not send back to the sender
-                                writer.println(clientName + ": " + message); // Broadcast with sender's name
+                                writer.println(username + ": " + message); // Broadcast with sender's name
                             }
                         }
                     }

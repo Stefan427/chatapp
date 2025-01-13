@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="433.0" prefWidth="655.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chatapptest.ChatRoom">
+<AnchorPane prefHeight="433.0" prefWidth="655.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ChatRoom">
    <children>
       <ImageView fx:id="homeImageView" fitHeight="62.0" fitWidth="147.0" layoutX="297.0" onMouseClicked="#onHomeClicked" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../home.png" />
+            <Image url="@home.png" />
          </image>
       </ImageView>
 
@@ -27,7 +27,7 @@
 
       <ImageView fitHeight="29.0" fitWidth="32.0" layoutX="557.0" layoutY="369.0" onMouseClicked="#pressedArrow" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../send_message.png" />
+            <Image url="@send_message.png" />
          </image>
       </ImageView>
    </children>

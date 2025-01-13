@@ -1,4 +1,4 @@
-package com.example.chatapptest;
+package com.example.demo;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -13,11 +13,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
 public class ChatRoom {
 
@@ -33,11 +33,23 @@ public class ChatRoom {
     private PrintWriter out; // To send messages to the server
     private Socket socket; // To read incoming messages
 
-    public void setClientConnection(PrintWriter out, Socket socket) {
+    public void setClientConnection(PrintWriter out, Socket socket,String username) {
         this.out = out;
         this.socket = socket;
-
-        // Start a thread to listen for incoming messages from the server
+        out.println(username);
+        try {
+            List<String> lines = Files.readAllLines(Paths.get("Chatlog.txt"));
+            for (String line : lines) {
+                String[] parts = line.split(": ", 2);
+                if (username.equals(parts[0])){
+                    addMessageToHistory("me: " + parts[1]);
+                }else{
+                    addMessageToHistory(line);
+                }
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
         new Thread(() -> {
             try (BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
                 String message;
@@ -109,7 +121,7 @@ public class ChatRoom {
         // This method is called when the home icon is clicked
         try {
             // Load the first scene (hello-view.fxml)
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/chatapptest/hello-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/hello-view.fxml"));
             Scene firstScene = new Scene(fxmlLoader.load(), 620, 440);
 
             // Get the current stage (window) and set the first scene
