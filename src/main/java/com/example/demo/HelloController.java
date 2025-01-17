@@ -4,20 +4,24 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Random;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
+
+import static javafx.scene.paint.Color.TRANSPARENT;
 
 public class HelloController {
     private Thread serverThread;
     int port = 12345; // default
+
+    private Set<String> users =  Set.of("stefan", "ron", "mohammad");
 
     @FXML
     private Label welcomeText;
@@ -29,6 +33,7 @@ public class HelloController {
     private Button connectBtn;
     @FXML
     private TextField InputUser;
+    @FXML
 
     private Socket socket;
     private PrintWriter out;
@@ -64,23 +69,94 @@ public class HelloController {
             // Load chat room scene
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/demo/chat-room.fxml"));
             Scene firstScene = new Scene(fxmlLoader.load(), 620, 440);
-
+            String css = getClass().getResource("chatRoom.css").toExternalForm();
+            firstScene.getStylesheets().add(css);
+            firstScene.setFill(TRANSPARENT);
             // Pass the PrintWriter and Socket to ChatRoom controller
             ChatRoom chatRoomController = fxmlLoader.getController();
             chatRoomController.setClientConnection(out, socket, username);
 
             Stage stage = (Stage) connectBtn.getScene().getWindow();
+            // to make the page moveable
+            AtomicReference<Double> offsetX = new AtomicReference<>((double) 0);
+            AtomicReference<Double> offsetY = new AtomicReference<>((double) 0);
+            // to pass it to setOnMousePressed it needs to be a reference
+            firstScene.setOnMousePressed(event -> {
+                offsetX.set(event.getSceneX());
+                offsetY.set(event.getSceneY());
+            });
+            firstScene.setOnMouseDragged(event -> {
+                stage.setX(event.getScreenX() - offsetX.get());
+                stage.setY(event.getScreenY() - offsetY.get());
+            });
             stage.setScene(firstScene);
             stage.show();
         } catch (Exception e1) {
             System.out.println(e1);; // Handle connection errors
         }
     }
+    protected String getIpAddress() {
+        return InputIpField.getText();
+    }
+
     private boolean isPortInUse(int port) {
         try (ServerSocket tempSocket = new ServerSocket(port)) {
             return false; // Port ist frei
         } catch (Exception e) {
             return true; // Port ist belegt
+        }
+    }
+    @FXML
+    public void exitOnClick() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exit");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to exit?");
+        ButtonType yesButton = new ButtonType("Yes");
+        ButtonType noButton = new ButtonType("No");
+        alert.getButtonTypes().setAll(yesButton, noButton);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == yesButton) {
+            System.exit(0);
+        }
+    }
+    @FXML
+    public void contactListOnClick() throws IOException {
+        String username = "default" + (int) (Math.random()*1000);
+        if(!InputUser.getText().trim().isEmpty()){
+            username = InputUser.getText().replaceAll("\\s", "").toLowerCase(Locale.ROOT);
+        }
+        try {
+            // Load the first scene (hello-view.fxml)
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("contact-list.fxml"));
+            Scene firstScene = new Scene(fxmlLoader.load(), 620, 440);
+
+            ContactList contactList = fxmlLoader.getController();
+            contactList.btnCustomize(username);
+
+            String css = getClass().getResource("contactList.css").toExternalForm();
+            firstScene.getStylesheets().add(css);
+            firstScene.setFill(TRANSPARENT);
+
+            // Get the current stage (window) and set the first scene
+            Stage stage = (Stage) connectBtn.getScene().getWindow();
+            // to make the page moveable
+            AtomicReference<Double> offsetX = new AtomicReference<>((double) 0);
+            AtomicReference<Double> offsetY = new AtomicReference<>((double) 0);
+            // to pass it to setOnMousePressed it needs to be a reference
+            firstScene.setOnMousePressed(event -> {
+                offsetX.set(event.getSceneX());
+                offsetY.set(event.getSceneY());
+            });
+            firstScene.setOnMouseDragged(event -> {
+                stage.setX(event.getScreenX() - offsetX.get());
+                stage.setY(event.getScreenY() - offsetY.get());
+            });
+            stage.setScene(firstScene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Print the error if the scene could not be loaded
         }
     }
 }

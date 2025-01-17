@@ -1,28 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
    <children>
-      <Label layoutX="140.0" layoutY="40.0" text="Ready to send messages?">
+      <Rectangle arcHeight="75.0" arcWidth="75.0" height="176.0" layoutX="-7.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" width="632.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" opacity="0.29782137274742126" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" opacity="0.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Label layoutX="141.0" layoutY="20.0" text="Ready to send messages?">
          <font>
             <Font name="Lucida Console" size="23.0" />
          </font>
       </Label>
-      <Label layoutX="172.0" layoutY="149.0" text="Host IP Address:" />
-      <Label layoutX="186.0" layoutY="208.0" text="Port number: " />
-      <TextField fx:id="InputIpField" layoutX="278.0" layoutY="145.0" />
-      <TextField fx:id="inputPortField" layoutX="278.0" layoutY="204.0" />
-      <Button fx:id="connectBtn" layoutX="243.0" layoutY="334.0" mnemonicParsing="false" onAction="#connectOnClick" prefHeight="25.0" prefWidth="113.0" text="Connect!" />
-      <ImageView fx:id="logoImageView" fitHeight="84.0" fitWidth="113.0" layoutX="473.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="InputIpField" layoutX="209.0" layoutY="189.0" prefHeight="40.0" prefWidth="180.0" promptText="Host IP Address :" />
+      <TextField fx:id="inputPortField" layoutX="209.0" layoutY="264.0" prefHeight="40.0" prefWidth="180.0" promptText="Port number :" />
+      <Button fx:id="connectBtn" layoutX="240.0" layoutY="338.0" mnemonicParsing="false" onAction="#connectOnClick" prefHeight="35.0" prefWidth="120.0" text="Connect!" />
+      <TextField fx:id="InputUser" layoutX="209.0" layoutY="119.0" prefHeight="40.0" prefWidth="180.0" promptText="Username :" />
+      <ImageView fx:id="exitBtn" fitHeight="35.0" fitWidth="35.0" layoutX="567.0" layoutY="14.0" onMouseClicked="#exitOnClick" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@logo.png" />
+            <Image url="@close-button.png" />
          </image>
       </ImageView>
-      <TextField fx:id="InputUser" layoutX="280.0" layoutY="94.0" />
-      <Label layoutX="186.0" layoutY="98.0" text="Username:" />
+      <ImageView fx:id="contactBtn" fitHeight="35.0" fitWidth="35.0" layoutX="13.0" layoutY="15.0" onMouseClicked="#contactListOnClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@user%20(1).png" />
+         </image>
+      </ImageView>
    </children>
+   <effect>
+      <InnerShadow choke="0.1" height="2.0" radius="0.5" width="2.0" />
+   </effect>
 </AnchorPane>

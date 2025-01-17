@@ -1,0 +1,87 @@
+.root{
+    -fx-background-color: rgba(255, 255, 255,.25);
+    -fx-background-radius: 28;
+    -fx-border-color: rgba(255, 255,255, 0.4);
+    -fx-border-radius: 28;
+}
+.label{
+    -fx-padding: 10;
+    -fx-font-size: 14px;
+}
+.own-message{
+    -fx-background-color:#A6CDC6;
+    -fx-text-fill: #16404D;
+    -fx-background-radius: 28 28 0 28;
+}
+.other-message{
+    -fx-background-color:#DDA853;
+    -fx-text-fill: #3a2702;
+    -fx-background-radius: 28 28 28 0;
+}
+.scroll-pane{
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
+.button{
+    -fx-text-fill: rgba(0, 0, 0, .75);
+    -fx-font-weight: bold;
+    -fx-background-radius: 28;
+
+}
+.button:hover{
+    -fx-text-fill: rgba(0, 0, 0, 1);
+    -fx-scale-x:1.05;
+    -fx-scale-y:1.05;
+}
+.text-field{
+    -fx-text-fill: rgba(0, 0, 0, .9);
+    -fx-prompt-text-fill: rgba(0, 0, 0, .85);
+    -fx-background-color: rgba(251, 245, 221,0.9);
+    -fx-border-radius: 28;
+    -fx-border-color: rgba(0, 0, 0, .1);
+    -fx-font-weight: bold;
+    -fx-background-radius: 28;
+    -fx-transition: opacity 0.5s;
+}
+.text-field:hover{
+    -fx-background-color: rgba(251, 245, 221,1);
+    -fx-text-fill: rgba(0, 0, 0, 1);
+    -fx-prompt-text-fill: rgba(0, 0, 0, .9);
+    -fx-scale-x:1.01;
+    -fx-scale-y:1.01;
+}
+.text-field:focused{
+    -fx-background-color:  rgba(251, 245, 221,1);
+    -fx-text-fill: rgba(0, 0, 0, 1);
+    -fx-prompt-text-fill: white;
+    -fx-scale-x:1.01;
+    -fx-scale-y:1.01;
+}
+.rectangle{
+    -fx-background-radius: 100;
+}
+#exitBtn{
+    -fx-opacity: 0.8;
+}
+#exitBtn:hover{
+    -fx-opacity: 1;
+    -fx-scale-x:1.05;
+    -fx-scale-y:1.05;
+}
+#homeImageView{
+    -fx-opacity: 0.8;
+}
+#homeImageView:hover{
+    -fx-opacity: 1;
+    -fx-scale-x:1.05;
+    -fx-scale-y:1.05;
+}
+#sendBtn{
+    -fx-opacity: 0.8;
+}
+#sendBtn:hover{
+    -fx-opacity: 1;
+    -fx-scale-x:1.05;
+    -fx-scale-y:1.05;
+}

@@ -3,21 +3,27 @@ package com.example.demo;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.*;
 import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
+
+import static javafx.scene.paint.Color.TRANSPARENT;
 
 public class ChatRoom {
 
@@ -47,7 +53,7 @@ public class ChatRoom {
                         if (first){
                             String[] parts2 = s.split(":");
                             if (username.equals(parts2[0])){
-                                addMessageToHistory("me: " + parts2[1]);
+                                addMessageToHistory("Me: " + parts2[1]);
                             }else{
                                 addMessageToHistory(s);
                             }
@@ -114,16 +120,33 @@ public class ChatRoom {
     }
 
 
-
-
     private void addMessageToHistory(String message) {
-        Label messageLabel = new Label(message);
-        messageLabel.setStyle("-fx-font-size: 14px; -fx-font-family: Arial;");
-        messageHistory.getChildren().add(messageLabel);
+        String[] parts = message.split(": ", 2);
+        String sender = parts[0];
 
-        // Auto-scroll to the bottom of the scroll pane
-        scrollPane.setVvalue(1.0);
+        Label messageLabel = new Label(message);
+        messageLabel.setWrapText(true);
+
+        // Wrap the message label in an HBox for alignment control
+        HBox messageContainer = new HBox();
+        messageContainer.setPadding(new Insets(5));
+
+        if (sender.equals("Me")) {
+            messageLabel.getStyleClass().add("own-message");
+            messageContainer.setAlignment(Pos.CENTER_RIGHT);
+            messageContainer.setPrefWidth(590);
+        } else {
+            messageLabel.getStyleClass().add("other-message");
+            messageContainer.setAlignment(Pos.CENTER_LEFT);
+        }
+
+        messageContainer.getChildren().add(messageLabel);
+        messageHistory.getChildren().add(messageContainer);
+
+        // Auto-scroll to the bottom
+        scrollPane.setVvalue(2.0);
     }
+
 
     @FXML
     protected void onHomeClicked() {
@@ -133,12 +156,42 @@ public class ChatRoom {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
             Scene firstScene = new Scene(fxmlLoader.load(), 620, 440);
 
+            String css = getClass().getResource("homePage.css").toExternalForm();
+            firstScene.getStylesheets().add(css);
+            firstScene.setFill(TRANSPARENT);
             // Get the current stage (window) and set the first scene
             Stage stage = (Stage) homeImageView.getScene().getWindow();
+            // to make the page moveable
+            AtomicReference<Double> offsetX = new AtomicReference<>((double) 0);
+            AtomicReference<Double> offsetY = new AtomicReference<>((double) 0);
+            // to pass it to setOnMousePressed it needs to be a reference
+            firstScene.setOnMousePressed(event -> {
+                offsetX.set(event.getSceneX());
+                offsetY.set(event.getSceneY());
+            });
+            firstScene.setOnMouseDragged(event -> {
+                stage.setX(event.getScreenX() - offsetX.get());
+                stage.setY(event.getScreenY() - offsetY.get());
+            });
             stage.setScene(firstScene);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace(); // Print the error if the scene could not be loaded
+        }
+    }
+    @FXML
+    public void exitOnClick() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exit");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to exit?");
+        ButtonType yesButton = new ButtonType("Yes");
+        ButtonType noButton = new ButtonType("No");
+        alert.getButtonTypes().setAll(yesButton, noButton);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == yesButton) {
+            System.exit(0);
         }
     }
 }
