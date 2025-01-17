@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.UserList">
+   <children>
+      <Rectangle arcHeight="75.0" arcWidth="75.0" height="176.0" layoutX="-5.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" width="630.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" opacity="0.29782137274742126" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" opacity="0.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#16404d" height="444.0" layoutX="425.0" stroke="#ffffff00" strokeType="INSIDE" width="200.0" />
+      <ImageView fx:id="exitBtn" fitHeight="35.0" fitWidth="35.0" layoutX="567.0" layoutY="14.0" onMouseClicked="#exitOnClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@close-button.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="homeImageView" fitHeight="35.0" fitWidth="35.0" layoutX="15.0" layoutY="14.0" onMouseClicked="#onHomeClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@home.png" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="-1.0" />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Button fx:id="firstPersonButton" layoutX="95.0" layoutY="62.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" text="Stefan" />
+      <Button fx:id="fourthPersonButton" layoutX="95.0" layoutY="327.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" text="Button" />
+      <Button fx:id="thirdPersonButton" layoutX="95.0" layoutY="241.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" text="Mohammad" />
+      <Button fx:id="secondPersonButton" layoutX="95.0" layoutY="150.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" text="Ron" />
+      <Label layoutX="462.0" layoutY="88.0" prefHeight="60.0" prefWidth="106.0" text="Digital" textAlignment="CENTER" textFill="#dda853">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="452.0" layoutY="150.0" text="disorder" textFill="#dda853">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
+      <Label layoutX="424.0" layoutY="327.0" prefHeight="40.0" prefWidth="200.0" text="If you had any problem you can contact us :" textAlignment="CENTER" textFill="#fbf5dd" wrapText="true" />
+      <Label layoutX="434.0" layoutY="380.0" prefHeight="23.0" prefWidth="180.0" text="Ron : email@gmail.com" textAlignment="CENTER" textFill="#fbf5dd" wrapText="true" />
+      <Label layoutX="432.0" layoutY="400.0" prefHeight="23.0" prefWidth="180.0" text="Stefan : email@gmail.com" textAlignment="CENTER" textFill="#fbf5dd" wrapText="true" />
+      <Label layoutX="432.0" layoutY="420.0" prefHeight="23.0" prefWidth="180.0" text="Mohammad : email@gmail.com" textAlignment="CENTER" textFill="#fbf5dd" wrapText="true" />
+   </children>
+   <effect>
+      <InnerShadow choke="0.1" height="2.0" radius="0.5" width="2.0" />
+   </effect>
+</AnchorPane>

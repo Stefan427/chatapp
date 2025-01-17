@@ -9,7 +9,6 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 import static javafx.scene.paint.Color.TRANSPARENT;
-
 public class HelloApplication extends Application {
     private double offsetX = 0;
     private double offsetY = 0 ;

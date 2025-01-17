@@ -1,12 +1,10 @@
 package com.example.demo;
 
-import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -129,10 +127,10 @@ public class HelloController {
         }
         try {
             // Load the first scene (hello-view.fxml)
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("contact-list.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("user-list.fxml"));
             Scene firstScene = new Scene(fxmlLoader.load(), 620, 440);
 
-            ContactList contactList = fxmlLoader.getController();
+            UserList contactList = fxmlLoader.getController();
             contactList.btnCustomize(username);
 
             String css = getClass().getResource("contactList.css").toExternalForm();

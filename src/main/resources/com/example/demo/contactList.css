@@ -4,25 +4,7 @@
     -fx-border-color: rgba(255, 255,255, 0.4);
     -fx-border-radius: 28;
 }
-.label{
-    -fx-font: bold 20pt Arial;
-    -fx-text-fill: #08181c;
-    -fx-opacity: 0.9;
-}
 .button{
-    -fx-background-color: #A6CDC6;
-    -fx-text-fill: #16404D;
-    -fx-font-weight: bold;
-    -fx-background-radius: 28;
-    -fx-opacity: 0.95;
-
-}
-.button:hover{
-    -fx-opacity: 1;
-    -fx-scale-x:1.05;
-    -fx-scale-y:1.05;
-}
-.text-field{
     -fx-text-fill: rgba(0, 0, 0, .9);
     -fx-prompt-text-fill: rgba(0, 0, 0, .85);
     -fx-background-color: rgba(251, 245, 221,0.9);
@@ -31,22 +13,12 @@
     -fx-font-weight: bold;
     -fx-background-radius: 28;
 }
-.text-field:hover{
+.button:hover{
     -fx-background-color: rgba(251, 245, 221,1);
     -fx-text-fill: rgba(0, 0, 0, 1);
     -fx-prompt-text-fill: rgba(0, 0, 0, .9);
     -fx-scale-x:1.05;
     -fx-scale-y:1.05;
-}
-.text-field:focused{
-    -fx-background-color: rgba(251, 245, 221,1);
-    -fx-text-fill: rgba(0, 0, 0, 1);
-    -fx-prompt-text-fill: rgba(251, 245, 221,1);;
-    -fx-scale-x:1.05;
-    -fx-scale-y:1.05;
-}
-.rectangle{
-    -fx-background-radius: 100;
 }
 #exitBtn{
     -fx-opacity: 0.8;
@@ -56,11 +28,11 @@
     -fx-scale-x:1.05;
     -fx-scale-y:1.05;
 }
-#contactBtn{
+#homeImageView{
     -fx-opacity: 0.8;
 }
-#contactBtn:hover{
+#homeImageView:hover {
     -fx-opacity: 1;
-    -fx-scale-x:1.05;
-    -fx-scale-y:1.05;
+    -fx-scale-x: 1.05;
 }
+
