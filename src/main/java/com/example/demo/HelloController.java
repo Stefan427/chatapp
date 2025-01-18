@@ -19,8 +19,8 @@ public class HelloController {
     private Thread serverThread;
     int port = 12345; // default
 
-    private Set<String> users =  Set.of("stefan", "ron", "mohammad");
-
+    //private HashMap< String, HashMap< String, Integer>> users = new HashMap<>();
+    //private HashMap< String,Integer> justAtest = new HashMap<>();
     @FXML
     private Label welcomeText;
     @FXML
@@ -90,14 +90,15 @@ public class HelloController {
             stage.setScene(firstScene);
             stage.show();
         } catch (Exception e1) {
-            System.out.println(e1);; // Handle connection errors
+            System.out.println(e1); // Handle connection errors
         }
     }
+
     protected String getIpAddress() {
         return InputIpField.getText();
     }
 
-    private boolean isPortInUse(int port) {
+    protected boolean isPortInUse(int port) {
         try (ServerSocket tempSocket = new ServerSocket(port)) {
             return false; // Port ist frei
         } catch (Exception e) {
@@ -131,7 +132,7 @@ public class HelloController {
             Scene firstScene = new Scene(fxmlLoader.load(), 620, 440);
 
             UserList contactList = fxmlLoader.getController();
-            contactList.btnCustomize(username);
+            //contactList.userBtnMaker();
 
             String css = getClass().getResource("contactList.css").toExternalForm();
             firstScene.getStylesheets().add(css);

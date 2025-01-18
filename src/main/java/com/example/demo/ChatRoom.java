@@ -144,7 +144,7 @@ public class ChatRoom {
         messageHistory.getChildren().add(messageContainer);
 
         // Auto-scroll to the bottom
-        scrollPane.setVvalue(2.0);
+        scrollPane.setVvalue(1.0);
     }
 
 
