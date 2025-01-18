@@ -6,8 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
@@ -97,7 +96,7 @@ public class HelloController {
         return InputIpField.getText();
     }
 
-    private boolean isPortInUse(int port) {
+    boolean isPortInUse(int port) {
         try (ServerSocket tempSocket = new ServerSocket(port)) {
             return false; // Port ist frei
         } catch (Exception e) {
@@ -155,6 +154,39 @@ public class HelloController {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace(); // Print the error if the scene could not be loaded
+        }
+    }
+    public void saveUsernameOnClick(){
+        String username;
+        if(!InputUser.getText().trim().isEmpty()){
+            username = InputUser.getText().replaceAll("\\s", "");
+            List<String> lines = new ArrayList<>();
+            boolean found = false;
+            // Datei lesen und in den Speicher laden
+            try (BufferedReader reader = new BufferedReader(new FileReader("Usernames.txt"))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    if (line.startsWith(username)) {
+                        found = true;
+                    }
+                    lines.add(line);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            // Neue Zeile hinzufügen, falls nicht gefunden
+            if (!found) {
+                lines.add(username);
+            }
+            // Datei mit aktualisiertem Inhalt überschreiben
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("Usernames.txt"))) {
+                for (String line : lines) {
+                    writer.write(line);
+                    writer.newLine();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
