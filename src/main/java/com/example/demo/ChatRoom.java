@@ -38,7 +38,8 @@ public class ChatRoom {
     @FXML
     private ScrollPane scrollPane;
     @FXML
-    private Button contactBtn;
+    private ImageView contactBtn;
+    private HashMap<String,Integer> userContacts = new HashMap<>();
 
     private PrintWriter out; // To send messages to the server
     private Socket socket; // To read incoming messages
@@ -149,6 +150,46 @@ public class ChatRoom {
 
         // Auto-scroll to the bottom
         scrollPane.setVvalue(1.0);
+    }
+    public void contactListOnClick() throws IOException {
+
+        // just some input for line 139 to check userBtnMaker functionality
+        userContacts.put("default1", 1);
+        userContacts.put("default2", 12345);
+
+
+        String username = "default" + (int) (Math.random()*1000);
+        try {
+            // Load the first scene (hello-view.fxml)
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("user-list.fxml"));
+            Scene firstScene = new Scene(fxmlLoader.load(), 620, 440);
+
+            UserList contactList = fxmlLoader.getController();
+            contactList.userBtnMaker(username,userContacts);
+
+            String css = getClass().getResource("contactList.css").toExternalForm();
+            firstScene.getStylesheets().add(css);
+            firstScene.setFill(TRANSPARENT);
+
+            // Get the current stage (window) and set the first scene
+            Stage stage = (Stage) contactBtn.getScene().getWindow();
+            // to make the page moveable
+            AtomicReference<Double> offsetX = new AtomicReference<>((double) 0);
+            AtomicReference<Double> offsetY = new AtomicReference<>((double) 0);
+            // to pass it to setOnMousePressed it needs to be a reference
+            firstScene.setOnMousePressed(event -> {
+                offsetX.set(event.getSceneX());
+                offsetY.set(event.getSceneY());
+            });
+            firstScene.setOnMouseDragged(event -> {
+                stage.setX(event.getScreenX() - offsetX.get());
+                stage.setY(event.getScreenY() - offsetY.get());
+            });
+            stage.setScene(firstScene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Print the error if the scene could not be loaded
+        }
     }
     @FXML
     protected void onHomeClicked() {
