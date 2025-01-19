@@ -19,8 +19,8 @@ public class HelloController {
     private Thread serverThread;
     int port = 12345; // default
 
-    private Set<String> users =  Set.of("stefan", "ron", "mohammad");
-
+    // this hashmap is just a test to check Userlist functionality in contactListOnClick()
+    private HashMap<String,Integer> userContacts = new HashMap<>();
     @FXML
     private Label welcomeText;
     @FXML
@@ -93,11 +93,8 @@ public class HelloController {
             System.out.println(e1);; // Handle connection errors
         }
     }
-    protected String getIpAddress() {
-        return InputIpField.getText();
-    }
 
-    private boolean isPortInUse(int port) {
+    protected boolean isPortInUse(int port) {
         try (ServerSocket tempSocket = new ServerSocket(port)) {
             return false; // Port ist frei
         } catch (Exception e) {
@@ -121,6 +118,12 @@ public class HelloController {
     }
     @FXML
     public void contactListOnClick() throws IOException {
+
+        // just some input for line 139 to check userBtnMaker functionality
+        userContacts.put("default1", 1);
+        userContacts.put("default2", 12345);
+
+
         String username = "default" + (int) (Math.random()*1000);
         if(!InputUser.getText().trim().isEmpty()){
             username = InputUser.getText().replaceAll("\\s", "").toLowerCase(Locale.ROOT);
@@ -131,7 +134,7 @@ public class HelloController {
             Scene firstScene = new Scene(fxmlLoader.load(), 620, 440);
 
             UserList contactList = fxmlLoader.getController();
-            contactList.btnCustomize(username);
+            contactList.userBtnMaker(username,userContacts);
 
             String css = getClass().getResource("contactList.css").toExternalForm();
             firstScene.getStylesheets().add(css);

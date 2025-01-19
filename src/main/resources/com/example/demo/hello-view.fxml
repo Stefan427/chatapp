@@ -47,7 +47,7 @@
             <Image url="@user%20(1).png" />
          </image>
       </ImageView>
-      <Button fx:id="saveUser" layoutX="239.0" layoutY="173.0" mnemonicParsing="false" onAction="#saveUsernameOnClick" prefHeight="35.0" prefWidth="120.0" text="Save username" />
+      <Button fx:id="saveUser" layoutX="239.0" layoutY="173.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" text="Save username" />
    </children>
    <effect>
       <InnerShadow choke="0.1" height="2.0" radius="0.5" width="2.0" />

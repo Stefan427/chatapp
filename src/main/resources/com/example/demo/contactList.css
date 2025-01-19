@@ -4,21 +4,26 @@
     -fx-border-color: rgba(255, 255,255, 0.4);
     -fx-border-radius: 28;
 }
+.scroll-pane{
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
 .button{
-    -fx-text-fill: rgba(0, 0, 0, .9);
-    -fx-prompt-text-fill: rgba(0, 0, 0, .85);
-    -fx-background-color: rgba(251, 245, 221,0.9);
-    -fx-border-radius: 28;
+    -fx-text-fill: #f8bc5f;
+    -fx-font-size: 14;
+    -fx-background-color: linear-gradient(to left, #A6CDC6, #A6CDC6, #5a8386, #5a8386, #16404D, #16404D);
     -fx-border-color: rgba(0, 0, 0, .1);
     -fx-font-weight: bold;
-    -fx-background-radius: 28;
+    -fx-background-radius: 0 28 28 0;
 }
 .button:hover{
-    -fx-background-color: rgba(251, 245, 221,1);
-    -fx-text-fill: rgba(0, 0, 0, 1);
+    -fx-background-color: linear-gradient(to left,
+                                        rgba(166, 205, 198, 0.4), rgba(166, 205, 198, 0.5),
+                                        rgba(90, 131, 134, 0.7), rgba(90, 131, 134, 0.8),
+                                        rgba(22, 64, 77, 0.95), rgba(22, 64, 77, 1));
+    -fx-text-fill: rgba(248, 188, 95, 0.9);
     -fx-prompt-text-fill: rgba(0, 0, 0, .9);
-    -fx-scale-x:1.05;
-    -fx-scale-y:1.05;
 }
 #exitBtn{
     -fx-opacity: 0.8;

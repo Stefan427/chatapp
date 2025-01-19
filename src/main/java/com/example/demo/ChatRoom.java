@@ -19,7 +19,9 @@ import java.io.*;
 import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -35,6 +37,8 @@ public class ChatRoom {
     private VBox messageHistory;
     @FXML
     private ScrollPane scrollPane;
+    @FXML
+    private Button contactBtn;
 
     private PrintWriter out; // To send messages to the server
     private Socket socket; // To read incoming messages
@@ -146,8 +150,6 @@ public class ChatRoom {
         // Auto-scroll to the bottom
         scrollPane.setVvalue(1.0);
     }
-
-
     @FXML
     protected void onHomeClicked() {
         // This method is called when the home icon is clicked
