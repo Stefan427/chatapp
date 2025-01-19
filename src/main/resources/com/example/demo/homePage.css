@@ -9,20 +9,23 @@
     -fx-text-fill: #08181c;
     -fx-opacity: 1;
 }
-.button{
+#connectBtn{
     -fx-background-color: #A6CDC6;
     -fx-text-fill: #16404D;
     -fx-font-weight: bold;
     -fx-background-radius: 28;
     -fx-opacity: 0.95;
-
 }
-.button:hover{
+#connectBtn:hover{
     -fx-opacity: 1;
     -fx-scale-x:1.05;
     -fx-scale-y:1.05;
 }
-.text-field{
+#connectBtn:pressed:hover{
+    -fx-background-color:#5a8386;
+}
+
+#inputPortField{
     -fx-text-fill: rgba(0, 0, 0, .9);
     -fx-prompt-text-fill: rgba(0, 0, 0, .85);
     -fx-background-color: rgba(251, 245, 221,0.9);
@@ -31,23 +34,74 @@
     -fx-font-weight: bold;
     -fx-background-radius: 28;
 }
-.text-field:hover{
+#inputPortField:hover{
     -fx-background-color: rgba(251, 245, 221,1);
     -fx-text-fill: rgba(0, 0, 0, 1);
     -fx-prompt-text-fill: rgba(0, 0, 0, .9);
     -fx-scale-x:1.05;
     -fx-scale-y:1.05;
 }
-.text-field:focused{
+#inputPortField:focused{
     -fx-background-color: rgba(251, 245, 221,1);
     -fx-text-fill: rgba(0, 0, 0, 1);
     -fx-prompt-text-fill: rgba(251, 245, 221,1);;
     -fx-scale-x:1.05;
     -fx-scale-y:1.05;
 }
-.rectangle{
-    -fx-background-radius: 100;
 
+#InputIpField{
+    -fx-text-fill: rgba(0, 0, 0, .9);
+    -fx-prompt-text-fill: rgba(0, 0, 0, .85);
+    -fx-background-color: rgba(251, 245, 221,0.9);
+    -fx-border-radius: 28;
+    -fx-border-color: rgba(0, 0, 0, .1);
+    -fx-font-weight: bold;
+    -fx-background-radius: 28;
+}
+#InputIpField:hover{
+    -fx-background-color: rgba(251, 245, 221,1);
+    -fx-text-fill: rgba(0, 0, 0, 1);
+    -fx-prompt-text-fill: rgba(0, 0, 0, .9);
+    -fx-scale-x:1.05;
+    -fx-scale-y:1.05;
+}
+#InputIpField:focused{
+    -fx-background-color: rgba(251, 245, 221,1);
+    -fx-text-fill: rgba(0, 0, 0, 1);
+    -fx-prompt-text-fill: rgba(251, 245, 221,1);
+    -fx-scale-x:1.05;
+    -fx-scale-y:1.05;
+}
+
+#InputUser{
+    -fx-text-fill: rgba(0, 0, 0, .9);
+    -fx-prompt-text-fill: rgba(0, 0, 0, .85);
+    -fx-background-color: rgba(251, 245, 221,0.9);
+    -fx-border-radius: 28;
+    -fx-border-color: rgba(0, 0, 0, .1);
+    -fx-font-weight: bold;
+    -fx-background-radius: 28;
+}
+#InputUser:hover{
+    -fx-background-color: rgba(251, 245, 221,1);
+    -fx-text-fill: rgba(0, 0, 0, 1);
+    -fx-prompt-text-fill: rgba(0, 0, 0, .9);
+}
+#InputUser:focused{
+    -fx-background-color: rgba(251, 245, 221,1);
+    -fx-text-fill: rgba(0, 0, 0, 1);
+    -fx-prompt-text-fill: rgba(251, 245, 221,1);;
+}
+
+#saveUser{
+    -fx-background-color: #A6CDC6;
+    -fx-text-fill: #16404D;
+    -fx-font-weight: bold;
+    -fx-background-radius: 28;
+    -fx-opacity: 0.95;
+}
+#saveUser:pressed:hover{
+    -fx-background-color:#5a8386;
 }
 #exitBtn{
     -fx-opacity: 0.8;
@@ -57,11 +111,16 @@
     -fx-scale-x:1.05;
     -fx-scale-y:1.05;
 }
+
 #contactBtn{
     -fx-opacity: 0.8;
 }
 #contactBtn:hover{
     -fx-opacity: 1;
+    -fx-scale-x:1.05;
+    -fx-scale-y:1.05;
+}
+#username:hover{
     -fx-scale-x:1.05;
     -fx-scale-y:1.05;
 }

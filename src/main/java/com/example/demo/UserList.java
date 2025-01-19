@@ -4,9 +4,12 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -22,47 +25,14 @@ public class UserList {
     private Thread serverThread;
     private Socket socket;
     private PrintWriter out;
+
     @FXML
     private ImageView homeImageView;
-    @FXML
-    private Button firstPersonButton; // stefan
-    @FXML
-    private Button secondPersonButton; // Ron
-    @FXML
-    private Button thirdPersonButton;// mohammad
-    @FXML
-    private Button fourthPersonButton;
     @FXML
     private ScrollPane scrollPane;
     @FXML
     private VBox vBox;
 
-
-    public void btnCustomize(String username) throws IOException {
-        // customize the button content for usernames that are in contactList
-        Platform.runLater(() -> {
-            if (username.equals("stefan") || username.equals("ron")||username.equals("mohammad")) {
-                Button fourthpersonButton = new Button();
-                fourthpersonButton.setText("other");
-                fourthpersonButton.setPrefWidth(180);
-                fourthpersonButton.setPrefHeight(40);
-                fourthpersonButton.setLayoutX(169);
-                fourthpersonButton.setLayoutY(312);
-            }
-            switch (username) {
-                case "stefan":
-                    firstPersonButton.setText("Digital Disorder");
-                    break;
-                case "ron":
-                    secondPersonButton.setText("Digital Disorder");
-                    break;
-                case "mohammad":
-                    thirdPersonButton.setText("Digital Disorder");
-                    break;
-            }
-        });
-
-    }
     @FXML
     protected void onHomeClicked() {
         // This method is called when the home icon is clicked
@@ -111,15 +81,25 @@ public class UserList {
     }
 
     protected void userBtnMaker(String user, HashMap<String,Integer> userContacts) {
-        for(String name : userContacts.keySet()) {
-            Button newButton = new Button(name);
-            int port = userContacts.get(name);
+        // this function make a List of contact to chose with whom you want to talk
+        Platform.runLater(() -> {
+            for(String name : userContacts.keySet()) {
+                HBox hBox = new HBox();
+                Button newButton = new Button(name);
+                newButton.setPrefWidth(375);
+                newButton.setPrefHeight(40);
 
-            newButton.setOnAction(event -> {
-                connectOnClick(user , port, (Button) event.getSource());
-            });
-            vBox.getChildren().add(0, newButton);
-        }
+                hBox.getChildren().add(newButton);
+                hBox.setSpacing(15);
+                hBox.setAlignment(Pos.CENTER_LEFT);
+                int port = userContacts.get(name);
+                newButton.setOnAction(event -> {
+                    connectOnClick(user , port, (Button) event.getSource());
+                });
+                vBox.getChildren().add(0, hBox);
+                vBox.setSpacing(15);
+            }
+        });
     }
 
     protected void connectOnClick(String username, int port, Button buttonClicked) {

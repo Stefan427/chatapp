@@ -85,3 +85,11 @@
     -fx-scale-x:1.05;
     -fx-scale-y:1.05;
 }
+#contactBtn{
+    -fx-opacity: 0.8;
+}
+#contactBtn:hover{
+    -fx-opacity: 1;
+    -fx-scale-x:1.05;
+    -fx-scale-y:1.05;
+}

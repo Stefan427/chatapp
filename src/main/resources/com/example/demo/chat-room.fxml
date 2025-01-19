@@ -14,7 +14,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ChatRoom">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ChatRoom">
    <children>
       <Rectangle arcHeight="75.0" arcWidth="75.0" height="176.0" layoutX="-5.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" width="630.0">
          <fill>
@@ -34,7 +34,7 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <ImageView fx:id="homeImageView" fitHeight="35.0" fitWidth="35.0" layoutX="13.0" layoutY="14.0" onMouseClicked="#onHomeClicked" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="homeImageView" fitHeight="35.0" fitWidth="35.0" layoutX="254.0" layoutY="14.0" onMouseClicked="#onHomeClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@home.png" />
          </image>
@@ -71,6 +71,11 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+      </ImageView>
+      <ImageView fx:id="contactBtn" fitHeight="35.0" fitWidth="35.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#contactListOnClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@user%20(1).png" />
+         </image>
       </ImageView>
    </children>
    <effect>
