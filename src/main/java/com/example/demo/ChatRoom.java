@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 import java.io.*;
 import java.net.Socket;
@@ -150,7 +153,7 @@ public class ChatRoom {
         messageHistory.getChildren().add(messageContainer);
 
         // Auto-scroll to the bottom
-        scrollPane.setVvalue(1.0);
+        new Timeline(new KeyFrame(Duration.millis(100), e -> scrollPane.setVvalue(1.0))).play();
     }
     public void contactListOnClick() throws IOException {
 

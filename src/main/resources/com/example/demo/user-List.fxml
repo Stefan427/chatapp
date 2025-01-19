@@ -3,6 +3,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
@@ -14,6 +15,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.UserList">
    <children>
@@ -35,12 +37,12 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <ScrollPane fx:id="scrollPane" fitToWidth="true" layoutX="199.0" layoutY="58.0" prefHeight="387.0" prefWidth="425.0">
+      <ScrollPane fx:id="scrollPane" fitToWidth="true" layoutX="199.0" layoutY="171.0" prefHeight="274.0" prefWidth="425.0">
          <content>
-            <VBox fx:id="vBox" prefHeight="371.0" prefWidth="421.0" />
+            <VBox fx:id="vBox" prefHeight="270.0" prefWidth="423.0" />
          </content>
       </ScrollPane>
-      <Rectangle arcHeight="70.0" arcWidth="70.0" fill="#16404d" height="440.0" layoutX="-4.0" stroke="#ffffff00" strokeType="INSIDE" width="212.0" />
+      <Rectangle arcHeight="70.0" arcWidth="70.0" fill="#a6cdc6" height="440.0" layoutX="-4.0" stroke="#ffffff00" strokeType="INSIDE" width="212.0" />
       <ImageView fx:id="exitBtn" fitHeight="35.0" fitWidth="35.0" layoutX="567.0" layoutY="14.0" onMouseClicked="#exitOnClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@close-button.png" />
@@ -60,18 +62,35 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Label layoutX="53.0" layoutY="58.0" prefHeight="58.0" prefWidth="106.0" text="Digital" textAlignment="CENTER" textFill="#dda853">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
-      <Label layoutX="33.0" layoutY="116.0" text="disorder" textFill="#dda853">
+      <Label layoutX="14.0" layoutY="32.0" prefHeight="161.0" prefWidth="192.0" text="Contact List" wrapText="true">
          <font>
             <Font size="40.0" />
          </font>
       </Label>
-      <Rectangle fill="#16404d" height="58.0" layoutX="102.0" layoutY="-2.0" stroke="#ffffff00" strokeType="INSIDE" width="106.0" />
-      <Rectangle fill="#16404d" height="58.0" layoutX="102.0" layoutY="382.0" stroke="#ffffff00" strokeType="INSIDE" width="106.0" />
+      <Rectangle fill="#a6cdc6" height="58.0" layoutX="102.0" layoutY="-2.0" stroke="#ffffff00" strokeType="INSIDE" width="106.0" />
+      <Rectangle fill="#a6cdc6" height="58.0" layoutX="102.0" layoutY="382.0" stroke="#ffffff00" strokeType="INSIDE" width="106.0" />
+      <Label layoutX="14.0" layoutY="331.0" text="about us :" />
+      <Label layoutX="14.0" layoutY="348.0" text="Digital Disorder " textFill="#dda853" />
+      <Label layoutX="14.0" layoutY="364.0" prefHeight="35.0" prefWidth="192.0" text="Stefan : email@gmail.com" textFill="#dda853" wrapText="true" />
+      <Label layoutX="14.0" layoutY="381.0" prefHeight="35.0" prefWidth="192.0" text="Ron : email@gmail.com" textFill="#dda853" wrapText="true" />
+      <Label layoutX="14.0" layoutY="398.0" prefHeight="35.0" prefWidth="192.0" text="Mohammad : email@gmail.com" textFill="#dda853" wrapText="true" />
+      <Label layoutX="232.0" layoutY="49.0" prefHeight="35.0" prefWidth="353.0" text="Start a new chat by entering a" textFill="#dda853" wrapText="true">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField layoutX="309.0" layoutY="97.0" prefHeight="35.0" prefWidth="200.0" />
+      <Text layoutX="269.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Label layoutX="232.0" layoutY="95.0" prefHeight="35.0" prefWidth="106.0" text="name : " textFill="#dda853">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="516.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@checked.png" />
+         </image>
+      </ImageView>
    </children>
    <effect>
       <InnerShadow choke="0.1" height="2.0" radius="0.5" width="2.0" />

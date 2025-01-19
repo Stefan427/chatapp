@@ -3,7 +3,6 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -34,16 +33,10 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <ImageView fx:id="homeImageView" fitHeight="35.0" fitWidth="35.0" layoutX="254.0" layoutY="14.0" onMouseClicked="#onHomeClicked" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="background" fitHeight="465.0" fitWidth="683.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@home.png" />
+            <Image url="@image-removebg.png" />
          </image>
-         <effect>
-            <ColorAdjust brightness="-1.0" />
-         </effect>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
       </ImageView>
 
       <!-- ScrollPane to hold the VBox of messages -->
@@ -53,6 +46,21 @@
             <VBox fx:id="messageHistory" spacing="10.0" />
          </content>
       </ScrollPane>
+      <ImageView fx:id="homeImageView" fitHeight="35.0" fitWidth="35.0" layoutX="288.0" layoutY="14.0" onMouseClicked="#onHomeClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@home.png" />
+         </image>
+         <effect>
+            <InnerShadow choke="1.0" height="255.0" radius="127.0" width="255.0">
+               <color>
+                  <Color red="0.9843137264251709" green="0.9607843160629272" blue="0.8666666746139526" />
+               </color>
+            </InnerShadow>
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
 
       <TextField fx:id="inputMessageField" layoutX="14.0" layoutY="365.0" onKeyPressed="#pressedEnterSendMessage" prefHeight="35.0" prefWidth="515.0" promptText="Type a message ..." />
 
@@ -63,6 +71,13 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <effect>
+            <InnerShadow choke="1.0" height="255.0" radius="127.0" width="255.0">
+               <color>
+                  <Color red="0.9843137264251709" green="0.9607843160629272" blue="0.8666666746139526" />
+               </color>
+            </InnerShadow>
+         </effect>
       </ImageView>
       <ImageView fx:id="exitBtn" fitHeight="35.0" fitWidth="35.0" layoutX="567.0" layoutY="14.0" onMouseClicked="#exitOnClick" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -76,6 +91,13 @@
          <image>
             <Image url="@user%20(1).png" />
          </image>
+         <effect>
+            <InnerShadow choke="1.0" height="255.0" radius="127.0" width="255.0">
+               <color>
+                  <Color red="0.9843137264251709" green="0.9607843160629272" blue="0.8666666746139526" />
+               </color>
+            </InnerShadow>
+         </effect>
       </ImageView>
    </children>
    <effect>
