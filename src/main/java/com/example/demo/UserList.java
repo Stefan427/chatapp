@@ -86,12 +86,12 @@ public class UserList {
             for(String name : userContacts.keySet()) {
                 HBox hBox = new HBox();
                 Button newButton = new Button(name);
-                newButton.setPrefWidth(375);
-                newButton.setPrefHeight(40);
+                newButton.setPrefWidth(250);
+                newButton.setPrefHeight(30);
 
                 hBox.getChildren().add(newButton);
                 hBox.setSpacing(15);
-                hBox.setAlignment(Pos.CENTER_LEFT);
+                hBox.setAlignment(Pos.CENTER);
                 int port = userContacts.get(name);
                 newButton.setOnAction(event -> {
                     connectOnClick(user , port, (Button) event.getSource());
