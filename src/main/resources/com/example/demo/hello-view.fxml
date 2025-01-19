@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -38,21 +40,38 @@
             <Font name="Lucida Console" size="23.0" />
          </font>
       </Label>
-      <TextField fx:id="InputIpField" layoutX="209.0" layoutY="239.0" prefHeight="40.0" prefWidth="180.0" promptText="Host IP Address :" />
-      <TextField fx:id="inputPortField" layoutX="209.0" layoutY="303.0" prefHeight="40.0" prefWidth="180.0" promptText="Port number :" />
-      <Button fx:id="connectBtn" layoutX="239.0" layoutY="364.0" mnemonicParsing="false" onAction="#connectOnClick" prefHeight="35.0" prefWidth="120.0" text="Connect!" />
-      <TextField fx:id="InputUser" layoutX="210.0" layoutY="112.0" prefHeight="40.0" prefWidth="180.0" promptText="Username :" />
+      <TextField fx:id="InputIpField" layoutX="188.0" layoutY="200.0" prefHeight="40.0" prefWidth="220.0" promptText="Host IP Address :" />
+      <TextField fx:id="inputPortField" layoutX="188.0" layoutY="274.0" prefHeight="40.0" prefWidth="220.0" promptText="Port number :" />
+      <Button fx:id="connectBtn" layoutX="239.0" layoutY="364.0" mnemonicParsing="false" onAction="#connectOnClick" prefHeight="35.0" prefWidth="120.0" text="Connect!">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Group fx:id="username" layoutX="188.0" layoutY="131.0">
+         <children>
+            <TextField fx:id="InputUser" prefHeight="40.0" prefWidth="220.0" promptText="Username :" />
+            <Button fx:id="saveUser" layoutX="160.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="sign up">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </Group>
       <ImageView fx:id="exitBtn" fitHeight="35.0" fitWidth="35.0" layoutX="567.0" layoutY="14.0" onMouseClicked="#exitOnClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@close-button.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <ImageView fx:id="contactBtn" fitHeight="35.0" fitWidth="35.0" layoutX="13.0" layoutY="15.0" onMouseClicked="#contactListOnClick" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@user%20(1).png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
-      <Button fx:id="saveUser" layoutX="239.0" layoutY="173.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" text="Save username" />
    </children>
    <effect>
       <InnerShadow choke="0.1" height="2.0" radius="0.5" width="2.0" />

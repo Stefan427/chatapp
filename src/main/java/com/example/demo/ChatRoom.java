@@ -131,6 +131,7 @@ public class ChatRoom {
 
         Label messageLabel = new Label(message);
         messageLabel.setWrapText(true);
+        messageLabel.setMaxWidth(250);
 
         // Wrap the message label in an HBox for alignment control
         HBox messageContainer = new HBox();
