@@ -13,7 +13,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ChatRoom">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ChatRoom">
    <children>
       <Rectangle arcHeight="75.0" arcWidth="75.0" height="176.0" layoutX="-5.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" width="630.0">
          <fill>
@@ -89,7 +89,7 @@
       </ImageView>
       <ImageView fx:id="contactBtn" fitHeight="35.0" fitWidth="35.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#contactListOnClick" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@user%20(1).png" />
+            <Image url="@user (1).png" />
          </image>
          <effect>
             <InnerShadow choke="1.0" height="255.0" radius="127.0" width="255.0">

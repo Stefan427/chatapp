@@ -1,37 +1,46 @@
 package com.example.demo;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import java.io.IOException;
-import java.io.PrintWriter;
+
+import java.io.*;
 import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.security.Key;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 import static javafx.scene.paint.Color.TRANSPARENT;
 
 
 public class UserList {
+    private static int portnumber = 12000;
     private Thread serverThread;
     private Socket socket;
     private PrintWriter out;
-
+    String username;
     @FXML
     private ImageView homeImageView;
     @FXML
     private ScrollPane scrollPane;
     @FXML
     private VBox vBox;
+    @FXML
+    private TextField createChat;
+
+    HashMap<String,Integer> userContacts;
 
     @FXML
     protected void onHomeClicked() {
@@ -80,8 +89,11 @@ public class UserList {
         }
     }
 
-    protected void userBtnMaker(String user, HashMap<String,Integer> userContacts) {
+    protected void userBtnMaker(String user, HashMap<String,Integer> usernamesContacts) {
         // this function make a List of contact to chose with whom you want to talk
+        username = user;
+        userContacts = usernamesContacts;
+
         Platform.runLater(() -> {
             for(String name : userContacts.keySet()) {
                 HBox hBox = new HBox();
@@ -148,6 +160,52 @@ public class UserList {
             stage.show();
         } catch (Exception e1) {
             System.out.println(e1); // Handle connection errors
+        }
+    }
+
+    @FXML
+    protected void pressedEnterCreateChat(KeyEvent event){
+        if (event.getCode().toString().equals("ENTER")) {
+            if (!createChat.getText().trim().isEmpty()){
+                System.out.println("test1");
+                String user = createChat.getText().trim();
+                List<String> lines = new ArrayList<>();
+                int found = 0;
+                // Datei lesen und in den Speicher laden
+                try (BufferedReader reader = new BufferedReader(new FileReader("Usernames.txt"))) {
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        if (line.startsWith(user) || line.startsWith(username)){
+                            line += " | " + portnumber;
+                            System.out.println(line + user + username);
+                            found++;
+
+                        }
+                        lines.add(line);
+                    }
+
+                    if (found == 2){
+                        System.out.println("test2");
+                        userContacts.clear();
+                        userContacts.put(user,portnumber++);
+                        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Usernames.txt"))) {
+                            for (String l : lines) {
+                                writer.write(l);
+                                writer.newLine();
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        userBtnMaker(username, userContacts);
+
+                    }
+
+                }catch (Exception e){
+                    System.out.println(e);
+                }
+
+
+            }
         }
     }
 }

@@ -18,7 +18,7 @@ public class HelloController {
     private Thread serverThread;
     int port = 12345; // default
 
-    private Set<String> users =  Set.of("stefan", "ron", "mohammad");
+    private HashMap<String,Integer> userContacts = new HashMap<>();
 
     @FXML
     private Label welcomeText;
@@ -120,9 +120,11 @@ public class HelloController {
     }
     @FXML
     public void contactListOnClick() throws IOException {
+        userContacts.put("default1", 12333);
+        userContacts.put("default2", 12345);
         String username = "default" + (int) (Math.random()*1000);
         if(!InputUser.getText().trim().isEmpty()){
-            username = InputUser.getText().replaceAll("\\s", "").toLowerCase(Locale.ROOT);
+            username = InputUser.getText().replaceAll("\\s", "");
         }
         try {
             // Load the first scene (hello-view.fxml)
@@ -130,7 +132,7 @@ public class HelloController {
             Scene firstScene = new Scene(fxmlLoader.load(), 620, 440);
 
             UserList contactList = fxmlLoader.getController();
-            contactList.btnCustomize(username);
+            contactList.userBtnMaker(username,userContacts);
 
             String css = getClass().getResource("contactList.css").toExternalForm();
             firstScene.getStylesheets().add(css);
